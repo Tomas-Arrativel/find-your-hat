@@ -93,6 +93,10 @@ const myField = new Field([
   ['░', '^', '░'],
 ]);
 
+console.log(
+  'Welcome to the Hat Game! Find the hat (^) without falling into a hole (O).\n',
+);
+
 myField.print();
 
 process.stdin.on('data', (data) => {
