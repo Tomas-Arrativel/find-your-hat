@@ -75,9 +75,11 @@ class Field {
     if (newPosition == this.hole) {
       console.log('You fell into a hole! Game over.');
       this.gameOver = true;
+      process.exit(0);
     } else if (newPosition == this.hat) {
       console.log('You found the hat! You won!');
       this.gameOver = true;
+      process.exit(0);
     } else {
       this.playerCol = newCol;
       this.playerRow = newRow;
@@ -88,7 +90,7 @@ class Field {
 }
 
 const myField = new Field([
-  ['*', '░', 'O'],
+  ['░', '░', 'O'],
   ['░', 'O', '░'],
   ['░', '^', '░'],
 ]);
