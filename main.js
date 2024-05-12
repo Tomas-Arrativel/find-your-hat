@@ -33,10 +33,57 @@ class Field {
     }
   }
 
-  move(usersMove) {
-    switch (usersMove) {
-      case 'u':
+  move(direction) {
+    if (this.gameOver) {
+      console.log('Game over!');
+      process.exit(0);
     }
+
+    let newRow = this.playerRow;
+    let newCol = this.playerCol;
+
+    switch (direction) {
+      case 'u':
+        newRow--;
+        break;
+      case 'd':
+        newRow++;
+        break;
+      case 'l':
+        newCol--;
+        break;
+      case 'r':
+        newCol++;
+        break;
+      default:
+        console.log('Invalid direction!');
+        break;
+    }
+
+    if (
+      newRow < 0 ||
+      newRow >= this.rows ||
+      newCol < 0 ||
+      newCol >= this.cols
+    ) {
+      console.log('Out of bounds!');
+      this.gameOver = true;
+      return;
+    }
+
+    const newPosition = this.field[newRow][newCol];
+    if (newPosition == this.hole) {
+      console.log('You fell into a hole! Game over.');
+      this.gameOver = true;
+    } else if (newPosition == this.hat) {
+      console.log('You found the hat! You won!');
+      this.gameOver = true;
+    } else {
+      this.playerCol = newCol;
+      this.playerRow = newRow;
+    }
+
+    this.print();
   }
 }
 
