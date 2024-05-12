@@ -19,6 +19,27 @@ class Field {
     this.gameOver = false;
   }
 
+  static generateField(height, width, percentage) {
+    const totalCells = height * width;
+    const hatCell = Math.floor(Math.random() * totalCells);
+    let holeCells = Math.floor((percentage / 100) * totalCells);
+    const field = [];
+
+    //Start the field only with fieldCharacters
+    for (let i = 0; i < height; i++) {
+      const row = [];
+      for (let j = 0; j < width; j++) {
+        row.push(fieldCharacter);
+      }
+      field.push(row);
+    }
+
+    //Place the hat in the field
+    const hatRow = Math.floor(hatCell / width);
+    const hatCol = hatCell % width;
+    field[hatRow][hatCol] = hat;
+  }
+
   print() {
     for (let i = 0; i < this.rows; i++) {
       let row = '';
