@@ -94,3 +94,8 @@ const myField = new Field([
 ]);
 
 myField.print();
+
+process.stdin.on('data', (data) => {
+  const direction = data.toString().trim().toLowerCase();
+  myField.move(direction);
+});
