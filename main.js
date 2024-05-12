@@ -38,6 +38,18 @@ class Field {
     const hatRow = Math.floor(hatCell / width);
     const hatCol = hatCell % width;
     field[hatRow][hatCol] = hat;
+
+    //Placing the holes in the field
+    while (holeCells > 0) {
+      const holeCell = Math.floor(Math.random() * totalCells);
+      const holeRow = Math.floor(holeCell / width);
+      const holeCol = holeCell % width;
+      if (field[holeRow][holeCol] === fieldCharacter) {
+        field[holeRow][holeCol] = hole;
+        holeCells--;
+      }
+    }
+    return field;
   }
 
   print() {
@@ -110,11 +122,8 @@ class Field {
   }
 }
 
-const myField = new Field([
-  ['░', '░', 'O'],
-  ['░', 'O', '░'],
-  ['░', '^', '░'],
-]);
+const generatedField = Field.generateField(5, 5, 40);
+const myField = new Field(generatedField);
 
 console.log(
   'Welcome to the Hat Game! Find the hat (^) without falling into a hole (O).\n',
