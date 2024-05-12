@@ -68,7 +68,7 @@ class Field {
     ) {
       console.log('Out of bounds!');
       this.gameOver = true;
-      return;
+      process.exit(0);
     }
 
     const newPosition = this.field[newRow][newCol];
